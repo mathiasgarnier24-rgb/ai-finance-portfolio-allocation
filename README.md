@@ -110,10 +110,10 @@ Le projet vise à :
 
 ## Modèles utilisés
 
-1. **Régression Linéaire** — baseline
-2. **Ridge Regression** (α=10) — régularisation L2
-3. **Random Forest** (100 arbres, max_depth=6) — non-linéaire
-4. **LSTM** (hidden_dim=32, window=10) — deep learning séquentiel (sur 10 tickers)
+1. **Régression Linéaire** - baseline
+2. **Ridge Regression** (α=10) - régularisation L2
+3. **Random Forest** (100 arbres, max_depth=6) - non-linéaire
+4. **LSTM** (hidden_dim=32, window=10) - deep learning séquentiel (sur 10 tickers)
 
 ## Stratégie de modélisation
 
@@ -124,16 +124,16 @@ Le projet vise à :
 
 ## Stratégies de portefeuille
 
-1. **Equal Weight (1/N)** — benchmark
-2. **ML Long-Only** — allocation proportionnelle aux prédictions positives
-3. **ML + Markowitz** — optimisation du ratio de Sharpe avec prédictions ML et covariance historique (60j), poids max 10% par action
+1. **Equal Weight (1/N)** - benchmark
+2. **ML Long-Only** - allocation proportionnelle aux prédictions positives
+3. **ML + Markowitz** - optimisation du ratio de Sharpe avec prédictions ML et covariance historique (60j), poids max 10% par action
 
 ## Métriques d'évaluation
 
-- **RMSE / MAE / R²** — qualité prédictive
-- **Ratio de Sharpe** — rendement ajusté au risque
-- **Max Drawdown** — risque extrême
-- **Turnover** — coût de rééquilibrage
+- **RMSE / MAE / R²** - qualité prédictive
+- **Ratio de Sharpe** - rendement ajusté au risque
+- **Max Drawdown** - risque extrême
+- **Turnover** - coût de rééquilibrage
 
 ---
 
