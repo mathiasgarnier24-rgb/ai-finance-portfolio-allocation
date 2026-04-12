@@ -141,7 +141,7 @@ Le projet vise à :
 
 ```
 projet5_portfolio/
-├── project5_portfolio.ipynb    # Notebook principal (code complet)
+├── project_portfolio.ipynb    # Notebook principal (code complet)
 ├── README.md                   # Ce fichier
 ```
 
@@ -155,5 +155,5 @@ Ouvrez le notebook directement dans votre navigateur :
 
 1. Allez sur [colab.research.google.com](https://colab.research.google.com)
 2. **Fichier → Ouvrir un notebook → onglet GitHub**
-3. Collez l'URL du dépôt et sélectionnez le notebook `project5_portfolio.ipynb`
+3. Collez l'URL du dépôt et sélectionnez le notebook `project_portfolio.ipynb`
 4. **Exécution → Tout exécuter**
