@@ -151,8 +151,9 @@ Tout le code est dans un seul notebook.
 
 # 9. Installation
 
-```bash
-pip install numpy pandas matplotlib seaborn yfinance scikit-learn torch scipy
-```
+Ouvrez le notebook directement dans votre navigateur :
 
-Puis ouvrir le notebook `project5_portfolio.ipynb` dans Jupyter ou Google Colab.
+1. Allez sur [colab.research.google.com](https://colab.research.google.com)
+2. **Fichier → Ouvrir un notebook → onglet GitHub**
+3. Collez l'URL du dépôt et sélectionnez le notebook `project5_portfolio.ipynb`
+4. **Exécution → Tout exécuter**
