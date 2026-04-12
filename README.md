@@ -25,7 +25,7 @@ Ce projet explore l'utilisation du Machine Learning pour prédire les rendements
 
 Ce travail intéresse les gérants de fonds, analystes quantitatifs, et toute personne travaillant à l'intersection du data science et de la finance.
 
-**Dataset de référence :** Stock Market Dataset (NASDAQ Universe, Kaggle) - données téléchargées via `yfinance`.
+**Dataset de référence :** Stock Market Dataset (NASDAQ Universe) - données téléchargées via `yfinance`.
 
 ---
 
