@@ -1,0 +1,158 @@
+# Projet 5 — Machine Learning pour l'Allocation de Portefeuille
+
+---
+
+# 1. Informations du Projet
+
+- **Titre du projet :** Machine Learning pour l'Allocation de Portefeuille
+- **Nom du groupe :** [Insérer le nom du groupe]
+- **Membres du groupe :**
+  - Étudiant 1 – [Nom]
+  - Étudiant 2 – [Nom]
+  - Étudiant 3 – [Nom]
+
+- **Cours :** AI In Finance
+- **Encadrants :** Nicolas De Roux & Mohamed El Fakir
+- **Date de soumission :** Avril 2026
+
+---
+
+# 2. Description du Projet
+
+L'allocation de portefeuille consiste à répartir un capital entre plusieurs actifs pour maximiser le rendement ajusté au risque. Les méthodes traditionnelles (Markowitz) reposent sur des estimations de rendements et de covariances souvent instables.
+
+Ce projet explore l'utilisation du Machine Learning pour prédire les rendements et la volatilité de 50 actions du NASDAQ, puis utilise ces prédictions dans un cadre d'optimisation de portefeuille (Markowitz, maximum Sharpe). On compare les stratégies ML à un benchmark equal weight (1/N).
+
+Ce travail intéresse les gérants de fonds, analystes quantitatifs, et toute personne travaillant à l'intersection du data science et de la finance.
+
+**Dataset de référence :** Stock Market Dataset (NASDAQ Universe, Kaggle) — données téléchargées via `yfinance`.
+
+---
+
+# 3. Objectif du Projet
+
+Le projet vise à :
+
+- Sélectionner 50 actions NASDAQ couvrant 8 secteurs
+- Calculer des features : rendements, volatilité, corrélations, secteurs, indicateurs techniques
+- Prédire les rendements hebdomadaires (next-week) avec des modèles ML
+- Construire un portefeuille optimisé (Markowitz) à partir des prédictions
+- Évaluer la performance : ratio de Sharpe, max drawdown, turnover
+
+---
+
+# 4. Définition de la Tâche
+
+- **Type de tâche :** Régression (prédiction de rendements continus)
+- **Variables d'entrée :** Rendements passés (lags 1–5), moyennes mobiles, volatilité glissante, RSI, momentum, volume relatif, corrélation au marché, secteur (one-hot)
+- **Variable cible :** Rendement cumulé sur les 5 prochains jours (next-week return)
+- **Métriques d'évaluation :**
+  - Prédiction : RMSE, MAE, R²
+  - Portefeuille : Ratio de Sharpe, Max Drawdown, Turnover
+
+---
+
+# 5. Description du Dataset
+
+## Vue d'ensemble
+
+- **Nombre d'actions :** 50 tickers NASDAQ
+- **Période :** 2018-01-01 à 2024-12-31 (~1750 jours de trading)
+- **Nombre total d'observations :** ~80 000 (50 tickers × ~1600 jours après nettoyage)
+- **Nombre de features :** ~20 features par action (+ one-hot secteur)
+- **Source des données :** Yahoo Finance via `yfinance`
+
+## Description des features
+
+| Feature | Description | Type |
+|---------|------------|------|
+| ret_lag1 à ret_lag5 | Rendements passés (1 à 5 jours) | Numérique |
+| ma_ratio | Ratio moyenne mobile 5j / 20j | Numérique |
+| vol_10j, vol_20j | Volatilité glissante | Numérique |
+| rsi | Relative Strength Index (14 jours) | Numérique |
+| momentum_5j, momentum_20j | Rendement cumulé sur 5 et 20 jours | Numérique |
+| vol_rel | Volume relatif (volume / moyenne 20j) | Numérique |
+| corr_marche | Corrélation glissante avec le marché (30j) | Numérique |
+| sect_* | Secteur de l'action (one-hot encoding) | Catégoriel |
+
+## Variable cible
+
+- Nom : `target`
+- Signification : rendement cumulé sur les 5 prochains jours
+- Valeurs continues, centrées autour de 0
+
+## Distribution des données
+
+- Les rendements hebdomadaires sont approximativement centrés autour de 0 avec des queues épaisses
+- La volatilité varie fortement dans le temps (COVID-19 en 2020)
+- Les corrélations inter-sectorielles varient dans le temps
+- Pas de déséquilibre de classes (régression)
+
+## Qualité des données
+
+- Très peu de valeurs manquantes après nettoyage
+- Les tickers avec plus de 5% de NaN sont exclus
+- Pas de doublons
+
+---
+
+# 6. Prétraitement des données
+
+- **Valeurs manquantes :** Tickers avec >5% NaN exclus, puis `dropna()` sur les features
+- **Feature Engineering :** 20 features techniques créées à partir des prix et volumes bruts
+- **Encodage catégoriel :** One-hot encoding des secteurs
+- **Normalisation :** `StandardScaler` sur les features numériques (fit sur train uniquement)
+- **Split temporel :** Train < 2023, Test ≥ 2023 (pas de mélange)
+
+---
+
+# 7. Approche de modélisation
+
+## Modèles utilisés
+
+1. **Régression Linéaire** — baseline
+2. **Ridge Regression** (α=10) — régularisation L2
+3. **Random Forest** (100 arbres, max_depth=6) — non-linéaire
+4. **LSTM** (hidden_dim=32, window=10) — deep learning séquentiel (sur 10 tickers)
+
+## Stratégie de modélisation
+
+- Baseline linéaire puis complexité croissante
+- Split temporel strict (pas de shuffle pour les séries temporelles)
+- Random Forest avec profondeur limitée pour éviter l'overfitting
+- LSTM sur sous-ensemble pour montrer l'approche deep learning
+
+## Stratégies de portefeuille
+
+1. **Equal Weight (1/N)** — benchmark
+2. **ML Long-Only** — allocation proportionnelle aux prédictions positives
+3. **ML + Markowitz** — optimisation du ratio de Sharpe avec prédictions ML et covariance historique (60j), poids max 10% par action
+
+## Métriques d'évaluation
+
+- **RMSE / MAE / R²** — qualité prédictive
+- **Ratio de Sharpe** — rendement ajusté au risque
+- **Max Drawdown** — risque extrême
+- **Turnover** — coût de rééquilibrage
+
+---
+
+# 8. Structure du projet
+
+```
+projet5_portfolio/
+├── project5_portfolio.ipynb    # Notebook principal (code complet)
+├── README.md                   # Ce fichier
+```
+
+Tout le code est dans un seul notebook.
+
+---
+
+# 9. Installation
+
+```bash
+pip install numpy pandas matplotlib seaborn yfinance scikit-learn torch scipy
+```
+
+Puis ouvrir le notebook `project5_portfolio.ipynb` dans Jupyter ou Google Colab.
