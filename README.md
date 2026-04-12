@@ -1,10 +1,10 @@
-# Projet 5 - Machine Learning pour l'Allocation de Portefeuille
+# Projet 5 - Modèle d'allocation de portefeuille par machine learning
 
 ---
 
 # 1. Informations du Projet
 
-- **Titre du projet :** Machine Learning pour l'Allocation de Portefeuille
+- **Titre du projet :** Modèle d'allocation de portefeuille par machine learning
 - **Nom du groupe :** Groupe 1
 - **Membres du groupe :**
   - Étudiant 1 – Maël Pertuisot
