@@ -140,7 +140,7 @@ Le projet vise à :
 # 8. Structure du projet
 
 ```
-projet5_portfolio/
+project_portfolio/
 ├── project_portfolio.ipynb    # Notebook principal (code complet)
 ├── README.md                   # Ce fichier
 ```
