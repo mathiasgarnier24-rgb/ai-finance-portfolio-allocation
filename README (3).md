@@ -5,15 +5,15 @@
 # 1. Informations du Projet
 
 - **Titre du projet :** Machine Learning pour l'Allocation de Portefeuille
-- **Nom du groupe :** [Insérer le nom du groupe]
+- **Nom du groupe :** Groupe 1
 - **Membres du groupe :**
-  - Étudiant 1 – [Nom]
-  - Étudiant 2 – [Nom]
-  - Étudiant 3 – [Nom]
+  - Étudiant 1 – Maël Pertuisot
+  - Étudiant 2 – Valentin Martel
+  - Étudiant 3 – Mathias Garnier
 
 - **Cours :** AI In Finance
 - **Encadrants :** Nicolas De Roux & Mohamed El Fakir
-- **Date de soumission :** Avril 2026
+- **Date de soumission :** 20/04/2026
 
 ---
 
