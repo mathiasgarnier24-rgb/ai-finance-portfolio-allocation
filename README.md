@@ -113,7 +113,7 @@ Le projet vise à :
 1. **Régression Linéaire** - baseline
 2. **Ridge Regression** (α=10) - régularisation L2
 3. **Random Forest** (100 arbres, max_depth=6) - non-linéaire
-4. **LSTM** (hidden_dim=32, window=10) - deep learning séquentiel (sur 10 tickers)
+4. **LSTM** (hidden_dim=32, window=10) - deep learning séquentiel
 
 ## Stratégie de modélisation
 
