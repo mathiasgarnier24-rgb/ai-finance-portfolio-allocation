@@ -120,7 +120,7 @@ Le projet vise à :
 - Baseline linéaire puis complexité croissante
 - Split temporel strict (pas de shuffle pour les séries temporelles)
 - Random Forest avec profondeur limitée pour éviter l'overfitting
-- LSTM sur sous-ensemble pour montrer l'approche deep learning
+- LSTM sur l'ensemble des 50 tickers pour capter les dépendances temporelles
 
 ## Stratégies de portefeuille
 
