@@ -23,6 +23,8 @@ L'allocation de portefeuille consiste à répartir un capital entre plusieurs ac
 
 Ce projet explore l'utilisation du Machine Learning pour prédire les rendements et la volatilité de 50 actions du NASDAQ, puis utilise ces prédictions dans un cadre d'optimisation de portefeuille (Markowitz, maximum Sharpe). On compare les stratégies ML à un benchmark equal weight (1/N).
 
+La **frontière efficiente de Markowitz** est tracée pour visualiser le positionnement de chaque stratégie dans l'espace rendement/risque.
+
 Ce travail intéresse les gérants de fonds, analystes quantitatifs, et toute personne travaillant à l'intersection du data science et de la finance.
 
 **Dataset de référence :** Stock Market Dataset (NASDAQ Universe) - données téléchargées via `yfinance`.
@@ -37,6 +39,7 @@ Le projet vise à :
 - Calculer des features : rendements, volatilité, corrélations, secteurs, indicateurs techniques
 - Prédire les rendements hebdomadaires (next-week) avec des modèles ML
 - Construire un portefeuille optimisé (Markowitz) à partir des prédictions
+- Tracer la frontière efficiente et y positionner les différentes stratégies
 - Évaluer la performance : ratio de Sharpe, max drawdown, turnover
 
 ---
@@ -113,20 +116,38 @@ Le projet vise à :
 1. **Régression Linéaire** - baseline
 2. **Ridge Regression** (α=10) - régularisation L2
 3. **Random Forest** (100 arbres, max_depth=6) - non-linéaire
-4. **LSTM** (hidden_dim=32, window=10) - deep learning séquentiel
+4. **GRU** (hidden_dim=32, window=10) - deep learning séquentiel
+
+## Choix du GRU
+
+Le GRU (Gated Recurrent Unit) a été préféré au LSTM car :
+- Il utilise 2 gates (update, reset) au lieu de 3, ce qui réduit le nombre de paramètres d'environ 25%
+- Il est plus rapide à entraîner avec une précision comparable
+- Il est particulièrement adapté aux horizons moyens (daily/weekly) selon la littérature
+- Le gate `zt` contrôle le mélange entre ancien et nouveau état, et `rt` décide combien du passé utiliser pour le candidat
 
 ## Stratégie de modélisation
 
 - Baseline linéaire puis complexité croissante
 - Split temporel strict (pas de shuffle pour les séries temporelles)
 - Random Forest avec profondeur limitée pour éviter l'overfitting
-- LSTM sur l'ensemble des 50 tickers pour capter les dépendances temporelles
+- GRU sur l'ensemble des 50 tickers pour capter les dépendances temporelles
 
 ## Stratégies de portefeuille
 
 1. **Equal Weight (1/N)** - benchmark
 2. **ML Long-Only** - allocation proportionnelle aux prédictions positives
 3. **ML + Markowitz** - optimisation du ratio de Sharpe avec prédictions ML et covariance historique (60j), poids max 10% par action
+
+## Frontière efficiente
+
+La frontière efficiente de Markowitz est tracée sur la période de test avec :
+- Les 50 actions individuelles colorées par secteur
+- Le portefeuille GMV (Global Minimum Variance)
+- Le portefeuille tangent (Maximum Sharpe)
+- Le portefeuille Equal Weight
+- Le portefeuille ML + Markowitz (poids moyens)
+- La Capital Market Line (CML)
 
 ## Métriques d'évaluation
 
