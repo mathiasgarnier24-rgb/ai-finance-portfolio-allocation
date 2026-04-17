@@ -27,7 +27,7 @@ La **frontière efficiente de Markowitz** est tracée pour visualiser le positio
 
 Ce travail intéresse les gérants de fonds, analystes quantitatifs, et toute personne travaillant à l'intersection du data science et de la finance.
 
-**Dataset de référence :** Stock Market Dataset (NASDAQ Universe) — données téléchargées via `yfinance`.
+**Dataset de référence :** Stock Market Dataset (NASDAQ Universe) - données téléchargées via `yfinance`.
 
 ---
 
@@ -114,10 +114,10 @@ Le projet vise à :
 
 ## Modèles utilisés
 
-1. **Régression Linéaire** — baseline interprétable
-2. **Ridge** (α=10) — régularisation L2 pour réduire la variance
-3. **Random Forest** (100 arbres, max_depth=6, min_samples_leaf=20) — non-linéaire, robuste aux interactions
-4. **GRU** (hidden_dim=32, fenêtre=10 jours) — réseau récurrent, deep learning séquentiel
+1. **Régression Linéaire** - baseline interprétable
+2. **Ridge** (α=10) - régularisation L2 pour réduire la variance
+3. **Random Forest** (100 arbres, max_depth=6, min_samples_leaf=20) - non-linéaire, robuste aux interactions
+4. **GRU** (hidden_dim=32, fenêtre=10 jours) - réseau récurrent, deep learning séquentiel
 
 ## Choix du GRU
 
@@ -167,12 +167,12 @@ Les 4 stratégies sont positionnées dans cet espace rendement/risque.
 
 ## Métriques d'évaluation
 
-- **RMSE / MAE / R²** — qualité prédictive des modèles
-- **Rendement annualisé** — performance économique
-- **Volatilité annualisée** — risque
-- **Ratio de Sharpe** — rendement ajusté au risque
-- **Max Drawdown** — perte maximale historique (peak-to-trough)
-- **Turnover moyen** — coût de rééquilibrage (convention 0.5 × Σ|Δw|)
+- **RMSE / MAE / R²** - qualité prédictive des modèles
+- **Rendement annualisé** - performance économique
+- **Volatilité annualisée** - risque
+- **Ratio de Sharpe** - rendement ajusté au risque
+- **Max Drawdown** - perte maximale historique (peak-to-trough)
+- **Turnover moyen** - coût de rééquilibrage (convention 0.5 × Σ|Δw|)
 
 ---
 
